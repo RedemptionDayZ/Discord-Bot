@@ -17,7 +17,7 @@ module.exports = {
 		const suggestionChannel = interaction.client.channels.cache.get(config.suggestionChannel);
 		const suggestionLogChannel = interaction.client.channels.cache.get(config.logChannel);
 		const suggestionDescription = interaction.options.getString('suggestion', true).toLowerCase();
-		const suggestionUpdates = interaction.options.getBoolean('get-updates', true);
+		const suggestionUpdates = interaction.options.getBoolean('get-updates') ?? false;
 
 		try {
 			const lastRecord = await Suggestions.findOne({

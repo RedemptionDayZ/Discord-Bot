@@ -37,6 +37,11 @@ const Suggestions = sequelize.define('suggestions', {
 		defaultValue: false,
 		allowNull: false,
 	},
+	getUpdates: {
+		type: Sequelize.BOOLEAN,
+		defaultValue: false,
+		allowNull: false,
+	},
 });
 
 module.exports = { sequelize, Suggestions };
