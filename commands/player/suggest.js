@@ -14,6 +14,7 @@ module.exports = {
 				.setDescription('Opt in to receive DMs when your suggestion gets updated by staff.')),
 	category: 'player',
 	async execute(interaction) {
+		const suggestionChannel = interaction.client.channels.cache.get('1139011639606267955');
 		const suggestionUpdates = interaction.options.getBoolean('get-updates', true);
 
 		const lastRecord = await Suggestions.findOne({
