@@ -9,8 +9,13 @@ module.exports = {
 			option.setName('suggestion')
 				.setDescription('The text of the suggestion.')
 				.setRequired(true))
+		.addBooleanOption(option =>
+			option.setName('get-updates')
+				.setDescription('Opt in to receive DMs when your suggestion gets updated by staff.')),
 	category: 'player',
 	async execute(interaction) {
+		const suggestionUpdates = interaction.options.getBoolean('get-updates', true);
+
 		const lastRecord = await Suggestions.findOne({
 			order:[['createdAt', 'DESC']],
 		});
