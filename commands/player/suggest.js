@@ -15,12 +15,13 @@ module.exports = {
 	category: 'player',
 	async execute(interaction) {
 		const suggestionChannel = interaction.client.channels.cache.get('1139011639606267955');
+		const suggestionDescription = interaction.options.getString('suggestion', true).toLowerCase();
 		const suggestionUpdates = interaction.options.getBoolean('get-updates', true);
 
 		const lastRecord = await Suggestions.findOne({
 			order:[['createdAt', 'DESC']],
 		});
-
-		interaction.reply(lastRecord.description);
+		interaction.reply({ content: `Suggestion has been created. \nDescription: ${suggestionDescription}\nReceive Updates: ${suggestionUpdates}`, ephemeral: true });
+		suggestionChannel.send(lastRecord.description);
 	},
 };
