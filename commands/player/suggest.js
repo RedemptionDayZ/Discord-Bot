@@ -1,4 +1,3 @@
-const { SlashCommandBuilder } = require('discord.js');
 const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const { Suggestions } = require('../../utils/database.js');
 
@@ -15,15 +14,11 @@ module.exports = {
 				.setDescription('Opt in to receive DMs when your suggestion gets updated by staff.')),
 	category: 'player',
 	async execute(interaction) {
-		const suggestionChannel = interaction.client.channels.cache.get('1139011639606267955');
+		const suggestionChannel = interaction.client.channels.cache.get(config.suggestionChannel);
+		const suggestionLogChannel = interaction.client.channels.cache.get(config.logChannel);
 		const suggestionDescription = interaction.options.getString('suggestion', true).toLowerCase();
 		const suggestionUpdates = interaction.options.getBoolean('get-updates', true);
 
-		const lastRecord = await Suggestions.findOne({
-			order:[['createdAt', 'DESC']],
-		});
-		interaction.reply({ content: `Suggestion has been created. \nDescription: ${suggestionDescription}\nReceive Updates: ${suggestionUpdates}`, ephemeral: true });
-		suggestionChannel.send(lastRecord.description);
 		try {
 			const lastRecord = await Suggestions.findOne({
 				order: [['createdAt', 'DESC']],
@@ -49,6 +44,7 @@ module.exports = {
 						username: interaction.user.id,
 						status: 0,
 						embedMessageId: embedId,
+						getUpdates: suggestionUpdates,
 					});
 
 					sent.startThread({
