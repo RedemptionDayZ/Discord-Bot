@@ -7,7 +7,8 @@ module.exports = {
 		.setDescription('Create a server suggestion')
 		.addStringOption(option =>
 			option.setName('suggestion')
-				.setDescription('The text of the suggestion.')),
+				.setDescription('The text of the suggestion.')
+				.setRequired(true))
 	category: 'player',
 	async execute(interaction) {
 		const lastRecord = await Suggestions.findOne({
