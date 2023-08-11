@@ -1,13 +1,14 @@
 {
-    "suggestionChannel": "1139011639606267955",
-    "logChannel": "1139011670522470550",
-    "upvoteID": "888238461541302373",
-    "downvoteID": "888238495280287774",
-    "status": [
-        ["New", "#1f1f1f"],
-        ["In Discussion", "#FFCC00"],
-        ["Accepted / Planned", "#3edefa"],
-        ["On Live", "#42fc5b"],
-        ["Rejected", "#fc4242"]
-    ] 
+	"suggestionChannel": "1139011639606267955",
+	"logChannel": "1139011670522470550",
+	"upvoteID": "888238461541302373",
+	"downvoteID": "888238495280287774",
+	"status": [
+		["New", "#1f1f1f"],
+		["In Discussion", "#FFCC00"],
+		["Accepted / Planned", "#3edefa"],
+		["On Live", "#42fc5b"],
+		["Rejected", "#fc4242"],
+		["Duplicate", "#9b55ff"]
+	] 
 }
