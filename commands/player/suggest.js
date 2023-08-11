@@ -1,5 +1,6 @@
 const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const { Suggestions } = require('../../utils/database.js');
+const config = require('../../config.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
