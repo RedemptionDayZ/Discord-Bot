@@ -113,7 +113,7 @@ module.exports = {
 				description = 'Your suggestion has been accepted.';
 				break;
 			case 3:
-				description = 'Your suggestion has been implemented and is live on the server.';
+				description = 'Your suggestion has been implemented and is live on the server. Thank you for helping to improve Redemption!';
 				break;
 			case 4:
 				description = 'Your suggestion has been rejected due to: ';
@@ -125,8 +125,8 @@ module.exports = {
 
 			const suggestionUpdateEmbed = new EmbedBuilder()
 				.setColor(config.status[suggestionStatus][1])
-				.setTitle(`Update on suggestion #${suggestionID}`)
-				.setDescription(description);
+				.setTitle(`Update on your suggestion #${suggestionID}`)
+				.setDescription(`${description}\n\n_You opted in to updates on Redemption for this particular suggestion._`);
 
 			interaction.client.users.send(suggestions.username, { embeds: [suggestionUpdateEmbed] });
 		}
