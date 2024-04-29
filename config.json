@@ -3,6 +3,7 @@
 	"logChannel": "1139011670522470550",
 	"upvoteID": "888238461541302373",
 	"downvoteID": "888238495280287774",
+	"muteRoleID": "1233126110154461234",
 	"status": [
 		["New", "#1f1f1f"],
 		["In Discussion", "#FFCC00"],
