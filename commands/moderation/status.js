@@ -46,8 +46,8 @@ module.exports = {
 		const suggestionLogChannel = interaction.client.channels.cache.get(config.logChannel);
 		const suggestionID = (`000${interaction.options.getInteger('id', true)}`).slice(-4);
 		const suggestionStatus = interaction.options.getInteger('new-status');
-		const commentText = interaction.options.getString('comment');
-		const duplicateID = (`000${interaction.options.getInteger('duplicate-id')}`).slice(-4);
+		// const commentText = interaction.options.getString('comment');
+		// const duplicateID = (`000${interaction.options.getInteger('duplicate-id')}`).slice(-4);
 
 		let suggestions;
 
