@@ -25,7 +25,7 @@ module.exports = {
 			.addFields({ name: 'Mute Reason', value: muteReason, inline: true });
 
 		if (mutedMember.roles.cache.has(config.muteRoleID)) {
-			interaction.reply({ content: `<@!${mutedMember.id}> is already muted, use \`\\Unmute <member>\` to unmute them.`, ephemeral: true });
+			interaction.reply({ content: `<@!${mutedMember.id}> is already muted, use \`\\unmute <member>\` to unmute them.`, ephemeral: true });
 			return;
 		}
 
