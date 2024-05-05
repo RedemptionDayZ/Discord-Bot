@@ -56,6 +56,8 @@ module.exports = {
 					sent.react(interaction.guild.emojis.cache.get('888238461541302373'))
 						.then(() => sent.react(interaction.guild.emojis.cache.get('888238495280287774')));
 
+					interaction.reply({ content: `Suggestion #${integerValue} created! Thank you for your input.\nStaff will review your suggestion once players have voted.`, ephemeral: true });
+
 					suggestionLogChannel.send(`**${interaction.user.username}** has created suggestion **#${integerValue}**`);
 				});
 			}
