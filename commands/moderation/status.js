@@ -63,9 +63,15 @@ module.exports = {
 				},
 			});
 
-			if (suggestions === null) interaction.reply({ content: `There is no suggestion with ID: ${suggestionID}`, ephemeral: true });
+			if (suggestions === null) {
+				interaction.reply({ content: `There is no suggestion with ID: ${suggestionID}`, ephemeral: true });
+				return;
+			}
 
-			if (suggestions.status == suggestionStatus) interaction.reply({ content: `The suggestion already has status ${config.status[suggestionStatus][0].toLowerCase()}`, ephemeral: true });
+			if (suggestions.status == suggestionStatus) {
+				interaction.reply({ content: `The suggestion already has status ${config.status[suggestionStatus][0].toLowerCase()}`, ephemeral: true });
+				return;
+			}
 		}
 		catch (e) {
 			console.log(e);
