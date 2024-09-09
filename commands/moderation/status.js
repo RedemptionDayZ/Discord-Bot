@@ -114,24 +114,8 @@ module.exports = {
 
 		if (suggestions.getUpdates === true && suggestionStatus != 0) {
 
-			let description;
+			let description = config.updateMessages[suggestionStatus - 1];
 
-			switch (suggestionStatus) {
-			case 1:
-				description = 'Your suggestion has caught the interest of players/staff and is now being internally discussed.';
-				break;
-			case 2:
-				description = 'Your suggestion has been accepted.';
-				break;
-			case 3:
-				description = 'Your suggestion has been implemented and is live on the server. Thank you for helping to improve Redemption!';
-				break;
-			case 4:
-				description = 'Your suggestion has been rejected due to: ';
-				break;
-			case 5:
-				description = 'Your suggestion has been marked as a duplicate of suggestion: ';
-				break;
 			}
 
 			const suggestionUpdateEmbed = new EmbedBuilder()
