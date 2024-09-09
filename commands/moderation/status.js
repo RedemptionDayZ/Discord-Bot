@@ -105,6 +105,7 @@ module.exports = {
 						id: suggestionID,
 					},
 				});
+				interaction.reply({ content: `Suggestion #${suggestionID} updated from ~~${config.status[suggestions.status][0]}~~ to **${config.status[suggestionStatus][0]}**`, ephemeral: true });
 				suggestionLogChannel.send(`**${interaction.user.username}** updated suggestion **#${suggestionID}**'s status from ~~${config.status[suggestions.status][0]}~~ to **${config.status[suggestionStatus][0]}**`);
 			})
 			.catch((error) => {
