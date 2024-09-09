@@ -8,7 +8,7 @@ module.exports = {
 		.addUserOption(option =>
 			option
 				.setName('member')
-				.setDescription('The member you wish to mute.')
+				.setDescription('The member you wish to unmute.')
 				.setRequired(true))
 		.addBooleanOption(option =>
 			option.setName('announce')
