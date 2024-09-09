@@ -17,12 +17,7 @@ module.exports = {
 	permissionLevel: 1,
 	async execute(interaction) {
 		const mutedMember = interaction.options.getMember('member', true);
-		const muteReason = interaction.options.getString('reason');
-
-		const muteEmbed = new EmbedBuilder()
-			.setColor('#fc4242')
-			.setTitle(`Member <@!${mutedMember.id}> muted`)
-			.addFields({ name: 'Mute Reason', value: muteReason, inline: true });
+		const muteReason = interaction.options.getString('reason') ?? null;
 
 		if (mutedMember.roles.cache.has(config.muteRoleID)) {
 			interaction.reply({ content: `<@!${mutedMember.id}> is already muted, use \`\\unmute <member>\` to unmute them.`, ephemeral: true });
@@ -32,6 +27,12 @@ module.exports = {
 		mutedMember.roles.add(config.muteRoleID);
 
 		if (muteReason) {
+			const muteEmbed = new EmbedBuilder()
+				.setColor('#fc4242')
+				.setTitle('Member muted')
+				.setDescription(`<@!${mutedMember.id}>`)
+				.addFields({ name: 'Mute Reason', value: muteReason, inline: false });
+
 			interaction.reply({ embeds: [muteEmbed] });
 		}
 		else {
