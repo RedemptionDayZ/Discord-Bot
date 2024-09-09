@@ -116,6 +116,12 @@ module.exports = {
 
 			let description = config.updateMessages[suggestionStatus - 1];
 
+			if (suggestionStatus === 4) {
+				if (commentText) {
+					description = `${description.slice(0, -1)} due to: "${commentText}"`;
+					// description += ` due to: "${commentText}"`;
+				}
+			}
 			}
 
 			const suggestionUpdateEmbed = new EmbedBuilder()
