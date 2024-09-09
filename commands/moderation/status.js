@@ -46,8 +46,8 @@ module.exports = {
 		const suggestionLogChannel = interaction.client.channels.cache.get(config.logChannel);
 		const suggestionID = (`000${interaction.options.getInteger('id', true)}`).slice(-4);
 		const suggestionStatus = interaction.options.getInteger('new-status');
-		// const commentText = interaction.options.getString('comment');
 		// const duplicateID = (`000${interaction.options.getInteger('duplicate-id')}`).slice(-4);
+		const commentText = interaction.options.getString('comment') ?? null;
 
 		let suggestions;
 
@@ -85,6 +85,10 @@ module.exports = {
 
 				const receivedEmbed = msg.embeds[0];
 				const newEmbed = EmbedBuilder.from(receivedEmbed).setColor(config.status[suggestionStatus][1]);
+				if (commentText) {
+					if (msg.embeds[0].fields[1]) msg.embeds[0].fields[1].value = commentText;
+					else newEmbed.addFields({ name: 'Staff Comment', value: commentText });
+				}
 				if (suggestionStatus === 5 && !msg.embeds[0].fields[1]) {
 					const duplicateMessageLink = `https://discord.com/channels/${guildId}/${config.suggestionChannel}/${suggestions.embedMessageId}`;
 					newEmbed.addFields({ name: 'Staff Comment', value:`Duplicate ${duplicateMessageLink}` });
@@ -96,7 +100,7 @@ module.exports = {
 				throw error;
 			})
 			.then(async () => {
-				await Suggestions.update({ status: suggestionStatus }, {
+				await Suggestions.update({ status: suggestionStatus, comment: commentText }, {
 					where: {
 						id: suggestionID,
 					},
