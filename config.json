@@ -11,5 +11,12 @@
 		["On Live", "#42fc5b"],
 		["Rejected", "#fc4242"],
 		["Duplicate", "#9b55ff"]
-	] 
+	],
+	"updateMessages": [
+		"Your suggestion has caught the interest of players/staff and is now being internally discussed.",
+		"Your suggestion has been accepted.",
+		"Your suggestion has been implemented and is live on the server. Thank you for helping to improve Redemption!",
+		"Your suggestion has been rejected.",
+		"Your suggestion has been marked as a duplicate."
+	]
 }
