@@ -46,10 +46,11 @@ module.exports = {
 		const suggestionLogChannel = interaction.client.channels.cache.get(config.logChannel);
 		const suggestionID = (`000${interaction.options.getInteger('id', true)}`).slice(-4);
 		const suggestionStatus = interaction.options.getInteger('new-status');
-		// const duplicateID = (`000${interaction.options.getInteger('duplicate-id')}`).slice(-4);
 		const commentText = interaction.options.getString('comment') ?? null;
+		let duplicateID = (interaction.options.getInteger('duplicate-id')) ?? null;
 
 		let suggestions;
+		let duplicateSuggestions;
 
 		try {
 			if (suggestionID.length < 4 || suggestionID.length > 4) {
@@ -76,6 +77,27 @@ module.exports = {
 		catch (e) {
 			console.log(e);
 			interaction.reply({ content: 'Something went wrong finding that suggestion ID.', ephemeral: true });
+			return;
+		}
+
+		if (suggestionStatus === 5 && duplicateID) {
+			duplicateID = `000${duplicateID}`.slice(-4);
+			try {
+				duplicateSuggestions = await Suggestions.findOne({
+					where: {
+						id: duplicateID,
+					},
+				});
+				if (duplicateSuggestions === null) {
+					interaction.reply({ content: `There is no duplicate suggestion with ID: ${duplicateID}`, ephemeral: true });
+					return;
+				}
+			}
+			catch (e) {
+				console.log(e);
+				interaction.reply({ content: 'Something went wrong finding that duplicate suggestion ID.', ephemeral: true });
+				return;
+			}
 		}
 
 		suggestionChannel.messages.fetch(suggestions.embedMessageId)
@@ -85,13 +107,24 @@ module.exports = {
 
 				const receivedEmbed = msg.embeds[0];
 				const newEmbed = EmbedBuilder.from(receivedEmbed).setColor(config.status[suggestionStatus][1]);
-				if (commentText) {
+				if (commentText && !duplicateID) {
 					if (msg.embeds[0].fields[1]) msg.embeds[0].fields[1].value = commentText;
 					else newEmbed.addFields({ name: 'Staff Comment', value: commentText });
 				}
-				if (suggestionStatus === 5 && !msg.embeds[0].fields[1]) {
-					const duplicateMessageLink = `https://discord.com/channels/${guildId}/${config.suggestionChannel}/${suggestions.embedMessageId}`;
-					newEmbed.addFields({ name: 'Staff Comment', value:`Duplicate ${duplicateMessageLink}` });
+				if (suggestionStatus === 5 && duplicateSuggestions) {
+					const duplicateMessageLink = `https://discord.com/channels/${guildId}/${config.suggestionChannel}/${duplicateSuggestions.embedMessageId}`;
+					const duplicateMessageText = `Voting disabled, please vote on the original ${duplicateMessageLink}`;
+
+					if (msg.embeds[0].fields[1]) msg.embeds[0].fields[1].value = duplicateMessageText;
+					else newEmbed.addFields({ name: 'Staff Comment', value: duplicateMessageText });
+
+					msg.reactions.removeAll()
+						.catch(error => console.error('Failed to clear reactions on duplicate suggestion:', error));
+
+					if (msg.hasThread()) {
+						msg.thread.delete()
+							.catch(error => console.error('Failed to delete associated thread discussion:', error));
+					}
 				}
 				msg.edit({ embeds: [newEmbed] });
 			})
@@ -119,7 +152,13 @@ module.exports = {
 			if (suggestionStatus === 4) {
 				if (commentText) {
 					description = `${description.slice(0, -1)} due to: "${commentText}"`;
-					// description += ` due to: "${commentText}"`;
+				}
+			}
+
+			if (suggestionStatus === 5) {
+				if (duplicateID) {
+					description = description.slice(0, -1);
+					description += ` of suggestion #${duplicateID}`;
 				}
 			}
 
