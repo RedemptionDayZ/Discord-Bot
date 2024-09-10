@@ -13,7 +13,7 @@ module.exports = {
 		.addBooleanOption(option =>
 			option.setName('get-updates')
 				.setDescription('Opt in to receive DMs when your suggestion gets updated by staff.')),
-	category: 'player',
+	category: 'suggestions',
 	async execute(interaction) {
 		const suggestionChannel = interaction.client.channels.cache.get(config.suggestionChannel);
 		const suggestionLogChannel = interaction.client.channels.cache.get(config.logChannel);
