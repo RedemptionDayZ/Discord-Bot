@@ -122,7 +122,6 @@ module.exports = {
 					// description += ` due to: "${commentText}"`;
 				}
 			}
-			}
 
 			const suggestionUpdateEmbed = new EmbedBuilder()
 				.setColor(config.status[suggestionStatus][1])
