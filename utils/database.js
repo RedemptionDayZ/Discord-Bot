@@ -44,4 +44,20 @@ const Suggestions = sequelize.define('suggestions', {
 	},
 });
 
-module.exports = { sequelize, Suggestions };
+const Donations = sequelize.define('donations', {
+	id: {
+		type: Sequelize.INTEGER,
+		primaryKey: true,
+		autoIncrement: true,
+	},
+	username: Sequelize.STRING,
+	amount: {
+		type: Sequelize.DECIMAL(20, 2),
+		defaultValue: 0,
+		allowNull: false,
+	},
+	reason: Sequelize.TEXT,
+	groupName: Sequelize.TEXT,
+});
+
+module.exports = { sequelize, Suggestions, Donations };
