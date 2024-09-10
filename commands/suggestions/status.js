@@ -39,7 +39,7 @@ module.exports = {
 				.setMaxValue(9999)
 				.setMinValue(0)
 				.setRequired(false)),
-	category: 'moderation',
+	category: 'suggestions',
 	permissionLevel: 1,
 	async execute(interaction) {
 		const suggestionChannel = interaction.client.channels.cache.get(config.suggestionChannel);
