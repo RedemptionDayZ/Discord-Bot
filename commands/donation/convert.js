@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
+const { currencyApiKey } = require('../../credentials.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -20,6 +21,24 @@ module.exports = {
 	category: 'donation',
 	async execute(interaction) {
 		const conversionAmount = interaction.options.getNumber('amount', true);
-		const conversionCurrency = interaction.options.getString('group', true);
+		const conversionCurrency = interaction.options.getString('currency', true);
+
+		const apiUrl = `https://api.currencybeacon.com/v1/convert?api_key=${currencyApiKey}&from=${conversionCurrency}&to=GBP&amount=${conversionAmount}`;
+
+		fetch(apiUrl)
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Network response to Currency Convert was not ok');
+				}
+				return response.json();
+			})
+			.then(data => {
+				interaction.reply(`${conversionAmount}${conversionCurrency} = ${data.response.value.toFixed(2)}GBP`);
+			})
+			.catch(error => {
+				console.error('Error with currency API:', error);
+			});
+
+		console.log();
 	},
 };
