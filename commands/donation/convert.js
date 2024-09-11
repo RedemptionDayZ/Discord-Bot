@@ -6,10 +6,10 @@ module.exports = {
 		.setDescription('Converts currencies to GBP.')
 		.addNumberOption(option =>
 			option.setName('amount')
-				.setDescription('The donation amount in GBP.')
+				.setDescription('The original amount you wish to convert.')
 				.setRequired(true)
 				.setMinValue(0.01))
-		.addNumberOption(option =>
+		.addStringOption(option =>
 			option.setName('currency')
 				.setDescription('Currency code you are converting from.')
 				.setRequired(true)
