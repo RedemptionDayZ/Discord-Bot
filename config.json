@@ -19,6 +19,13 @@
 		"Your suggestion has been rejected.",
 		"Your suggestion has been marked as a duplicate."
 	],
-	"donationLogChannel": "1282876018515902549"
+	"donationLogChannel": "1282876018515902549",
+	"donationRoles": [
+		["0", "1283483364866654228"],
+		["25", "1283483210940158097"],
+		["50", "1283483434735370402"],
+		["75", "1283483503727607818"],
+		["100", "1283483580315734099"],
+		["300", "1283483751610974268"]
 	]
 }
