@@ -167,7 +167,8 @@ module.exports = {
 				.setTitle(`Update on your suggestion #${suggestionID}`)
 				.setDescription(`${description}\n\n_You opted in to updates on Redemption for this particular suggestion._`);
 
-			interaction.client.users.send(suggestions.username, { embeds: [suggestionUpdateEmbed] });
+			interaction.client.users.send(suggestions.username, { embeds: [suggestionUpdateEmbed] })
+				.catch(error => { if (error.code !== 50007) console.log(error); });
 		}
 	},
 };
