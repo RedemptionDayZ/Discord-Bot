@@ -1,9 +1,9 @@
 {
-	"suggestionChannel": "1139011639606267955",
-	"logChannel": "1139011670522470550",
-	"upvoteID": "888238461541302373",
-	"downvoteID": "888238495280287774",
-	"muteRoleID": "1233126110154461234",
+	"suggestionChannel": "Channel ID for where suggestions get posted",
+	"logChannel": "Channel ID for suggestion logging",
+	"upvoteID": "Emoji ID for upvote",
+	"downvoteID": "Emoji ID for downvote",
+	"muteRoleID": "Role ID for Silent One role",
 	"status": [
 		["New", "#1f1f1f"],
 		["In Discussion", "#FFCC00"],
@@ -19,13 +19,13 @@
 		"Your suggestion has been rejected.",
 		"Your suggestion has been marked as a duplicate."
 	],
-	"donationLogChannel": "1282876018515902549",
+	"donationLogChannel": "Channel ID for donation logging",
 	"donationRoles": [
-		["0", "1283483364866654228"],
-		["25", "1283483210940158097"],
-		["50", "1283483434735370402"],
-		["75", "1283483503727607818"],
-		["100", "1283483580315734099"],
-		["300", "1283483751610974268"]
+		["0", "Role ID for generic donator / supporter role"],
+		["Integer amount of GBP donated to receive role", "Role ID for tiered donator roles"],
+		["50", "Role ID 2"],
+		["75", "Role ID 3"],
+		["100", "Role ID 4"],
+		["300", "Role ID 5"]
 	]
 }
