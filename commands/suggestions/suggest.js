@@ -42,14 +42,13 @@ module.exports = {
 				order: [['createdAt', 'DESC']],
 			});
 
-			let integerValue = parseInt(lastRecord.id, 10);
-			integerValue += 1;
-			integerValue.toString();
-			integerValue = (`000${integerValue}`).slice(-4);
+			let suggestionID = parseInt(lastRecord.id, 10);
+			suggestionID++;
+			suggestionID = (`000${suggestionID}`).slice(-4);
 
 			const suggestionEmbed = new EmbedBuilder()
 				.setColor('#1f1f1f')
-				.setTitle(`Suggestion #${integerValue}`)
+				.setTitle(`Suggestion #${suggestionID}`)
 				.setDescription(`${suggestionDescription}`)
 				.addFields({ name: 'State', value: 'New', inline: true });
 
@@ -57,7 +56,7 @@ module.exports = {
 				suggestionChannel.send({ embeds: [suggestionEmbed] }).then(async (sent) => {
 					const embedId = sent.id;
 					await Suggestions.create({
-						id: integerValue,
+						id: suggestionID,
 						description: suggestionDescription,
 						username: interaction.user.id,
 						status: 0,
@@ -66,17 +65,16 @@ module.exports = {
 					});
 
 					sent.startThread({
-						name: `Suggestion #${integerValue} - Discussion`,
+						name: `Suggestion #${suggestionID} - Discussion`,
 						autoArchiveDuration: 1440,
 					});
 
 					sent.react(interaction.guild.emojis.cache.get('888238461541302373'))
 						.then(() => sent.react(interaction.guild.emojis.cache.get('888238495280287774')));
-
-					interaction.reply({ content: `Suggestion #${integerValue} created! Thank you for your input.\nStaff will review your suggestion once players have voted.`, ephemeral: true });
-
-					suggestionLogChannel.send(`**${interaction.user.username}** has created suggestion **#${integerValue}**`);
 				});
+				interaction.reply({ content: `Suggestion #${suggestionID} created! Thank you for your input.\nStaff will review your suggestion once players have voted.${dmUpdateMessage}`, ephemeral: true });
+
+				suggestionLogChannel.send(`**${interaction.user.username}** has created suggestion **#${suggestionID}**`);
 			}
 			catch (e) {
 				console.log(e);
