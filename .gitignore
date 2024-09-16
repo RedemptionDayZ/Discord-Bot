@@ -3,3 +3,4 @@ credentials.json
 notes.md
 .eslintrc.json
 database.sqlite
+config.json
