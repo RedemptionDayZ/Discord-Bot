@@ -34,7 +34,7 @@ module.exports = {
 				});
 		}
 		else {
-			dmUpdateMessage = '\n\nYou did not opt in for updates on this suggestion.';
+			dmUpdateMessage = '\n\n_You did not opt in for updates on this suggestion._';
 		}
 
 		try {
