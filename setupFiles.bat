@@ -10,3 +10,4 @@ echo }>> credentials.json
 if NOT exist config.json copy config_template.json config.json
 if NOT exist startBot.bat echo node .>startBot.bat
 if NOT exist deployBotCommands.bat echo node deploy-commands.js>deployBotCommands.bat
+npm install
