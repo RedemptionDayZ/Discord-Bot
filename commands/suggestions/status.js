@@ -126,10 +126,8 @@ module.exports = {
 					msg.reactions.removeAll()
 						.catch(error => console.error('Failed to clear reactions on duplicate suggestion:', error));
 
-					if (msg.hasThread()) {
-						msg.thread.delete()
-							.catch(error => console.error('Failed to delete associated thread discussion:', error));
-					}
+					try { msg.thread.delete(); }
+					catch (e) { console.log(`[Warning] Failed to delete associated Discord thread on suggestion #${suggestionID}`); }
 				}
 				msg.edit({ embeds: [newEmbed] });
 			})
