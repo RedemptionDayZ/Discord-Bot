@@ -36,7 +36,8 @@ module.exports = {
 				interaction.reply(`${conversionAmount}${conversionCurrency} = ${data.response.value.toFixed(2)}GBP`);
 			})
 			.catch(error => {
-				console.error('Error with currency API:', error);
+				console.error('Currency API:', error);
+				interaction.reply({ content: 'There was an error contacting the conversion API, check the API key is correct.', ephemeral: true });
 			});
 
 		console.log();
