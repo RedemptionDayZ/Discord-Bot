@@ -25,7 +25,7 @@ module.exports = {
 				.setRequired(false)),
 	category: 'donation',
 	async execute(interaction) {
-		const donationLogChannel = interaction.client.channels.cache.get(config.donationChannel);
+		const donationLogChannel = interaction.client.channels.cache.get(config.donationLogChannel);
 		const donationAmount = interaction.options.getNumber('amount', true);
 		const donationUser = interaction.options.getMember('donator', true);
 		const donationReason = interaction.options.getString('reason', true);
