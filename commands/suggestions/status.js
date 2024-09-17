@@ -12,7 +12,7 @@ module.exports = {
 				.setName('id')
 				.setDescription('The ID of the suggestion.')
 				.setMaxValue(9999)
-				.setMinValue(0)
+				.setMinValue(1)
 				.setRequired(true))
 		.addIntegerOption(option =>
 			option
