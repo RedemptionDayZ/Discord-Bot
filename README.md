@@ -18,4 +18,5 @@
    4. `deployBotCommands.bat` this registers the commands to the server
 4. If both .json files are done properly you can now run `deployBotCommands.bat`
    1. This registers the applications commands for the server, only has to be run once
-5. Run `startBot.bat`
+5. Copy database.sqlite from previous instance
+6. Run `startBot.bat`
