@@ -73,6 +73,11 @@ module.exports = {
 				interaction.reply({ content: `The suggestion already has status ${config.status[suggestionStatus][0].toLowerCase()}`, ephemeral: true });
 				return;
 			}
+
+			if (suggestions.status == 4 || suggestions.status == 5) {
+				interaction.reply({ content: `A suggestion with ${config.status[suggestions.status][0].toLowerCase()} status cannot be changed.`, ephemeral: true });
+				return;
+			}
 		}
 		catch (e) {
 			console.log(e);
