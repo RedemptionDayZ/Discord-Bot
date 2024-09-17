@@ -39,7 +39,5 @@ module.exports = {
 				console.error('Currency API:', error);
 				interaction.reply({ content: 'There was an error contacting the conversion API, check the API key is correct.', ephemeral: true });
 			});
-
-		console.log();
 	},
 };
