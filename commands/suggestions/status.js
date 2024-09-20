@@ -69,6 +69,11 @@ module.exports = {
 				return;
 			}
 
+			if (suggestions.archived === true) {
+				interaction.reply({ content: `Suggestion #${suggestionID} has been archived and can no longer be updated.`, ephemeral: true });
+				return;
+			}
+
 			if (suggestions.status == suggestionStatus) {
 				interaction.reply({ content: `The suggestion already has status ${config.status[suggestionStatus][0].toLowerCase()}`, ephemeral: true });
 				return;
