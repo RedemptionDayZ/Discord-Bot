@@ -17,7 +17,7 @@ module.exports = {
 	async execute(interaction) {
 		const suggestionChannel = interaction.client.channels.cache.get(config.suggestionChannel);
 		const suggestionLogChannel = interaction.client.channels.cache.get(config.logChannel);
-		const suggestionDescription = interaction.options.getString('suggestion', true).toLowerCase();
+		const suggestionDescription = interaction.options.getString('suggestion', true);
 		let suggestionUpdates = interaction.options.getBoolean('get-updates') ?? false;
 		let dmUpdateMessage = '';
 
