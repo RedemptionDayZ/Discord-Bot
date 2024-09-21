@@ -38,6 +38,5 @@ module.exports = {
 		else {
 			interaction.reply({ content: `<@!${mutedMember.id}> has been muted`, ephemeral: true });
 		}
-		return;
 	},
 };
